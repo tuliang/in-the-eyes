@@ -44,11 +44,11 @@ namespace :deploy do
   task :restart do
     on roles(:web), in: :sequence, wait: 3 do
       within release_path do
-        execute 'echo "docker-compose stop ===>"'
+      	execute "cd #{release_path}"
+
         sudo "docker-compose down"
         
-        execute 'echo "docker-compose start ===>"'
-        sudo "cd #{release_path} && docker-compose build && docker-compose up -d"
+        sudo "docker-compose build && docker-compose up -d"
       end
     end
   end
