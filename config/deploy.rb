@@ -48,7 +48,7 @@ namespace :deploy do
 
       	sudo "docker-compose build app"
 
-      	sudo "docker-compose run app RAILS_ENV=production bundle exec rails db:migrate"
+      	sudo "docker-compose run app bundle exec rails db:migrate RAILS_ENV=production"
 
       	restart_app
       end
@@ -131,8 +131,8 @@ namespace :deploy do
   end
 
   def install_db
-  	sudo "docker-compose run app RAILS_ENV=production bundle exec rails db:create"
-  	sudo "docker-compose run app RAILS_ENV=production bundle exec rails db:migrate"
-  	sudo "docker-compose run app RAILS_ENV=production bundle exec rails db:seed"
+  	sudo "docker-compose run app bundle exec rails db:create RAILS_ENV=production"
+  	sudo "docker-compose run app bundle exec rails db:migrate RAILS_ENV=production"
+  	sudo "docker-compose run app bundle exec rails db:seed RAILS_ENV=production"
   end
 end
