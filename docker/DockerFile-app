@@ -20,6 +20,7 @@ COPY . /home/app/in_the_eyes
 # Setting env up
 ENV RAILS_ENV='production'
 ENV RACK_ENV='production'
+ENV SECRET_KEY_BASE=fake_secure_for_compile
 
 # Adding project files
 COPY . .
