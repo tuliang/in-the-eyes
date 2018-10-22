@@ -8,6 +8,8 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 server "47.92.214.225", user: "deploy", roles: %w{app db web}, my_property: :my_value
 
+set :rails_env, :production
+
 set :ssh_options, {
   keys: %w(~/.ssh/id_rsa),
   forward_agent: true,
