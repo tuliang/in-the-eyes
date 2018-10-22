@@ -2,6 +2,6 @@ class HomeController < ApplicationController
 
   # GET /
   def index
-    @pictures = Picture.all
+    @images = Image.all
   end
 end
