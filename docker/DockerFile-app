@@ -1,0 +1,29 @@
+FROM ruby:2.5.3-alpine
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
+
+RUN apk --update add ca-certificates nodejs tzdata imagemagick bash &&\
+    apk add --virtual .builddeps build-base ruby-dev libc-dev openssl linux-headers postgresql-dev \
+    libxml2-dev libxslt-dev git curl
+
+WORKDIR /home/app/in_the_eyes
+
+RUN mkdir -p /home/app
+
+COPY Gemfile /home/app/in_the_eyes/Gemfile
+COPY Gemfile.lock /home/app/in_the_eyes/Gemfile.lock
+
+RUN bundle install --jobs 20 --retry 5 --without development test
+
+COPY . /home/app/in_the_eyes
+
+# Setting env up
+ENV RAILS_ENV='production'
+ENV RACK_ENV='production'
+
+# Adding project files
+COPY . .
+RUN bundle exec rake assets:precompile
+
+EXPOSE 3000
+CMD ["bundle", "exec", "puma", "-C", "config/puma-production.rb"]

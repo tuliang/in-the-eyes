@@ -41,27 +41,98 @@ set :deploy_to, "/home/deploy/www/in_the_eyes"
 
 namespace :deploy do
 
+  task :published do
+    on roles(:web), in: :sequence, wait: 3 do
+      within release_path do
+      	execute "cd #{release_path}"
+
+      	sudo "docker-compose build"
+
+      	sudo "docker-compose run app RAILS_ENV=production bundle exec rails db:migrate"
+
+      	restart_app
+      end
+    end
+  end
+
+  task :restart_db do
+    on roles(:db), in: :sequence, wait: 3 do
+      within release_path do
+        execute "cd #{release_path}"
+
+        restart_db
+      end
+    end
+  end
+
+  task :restart_app do
+    on roles(:app), in: :sequence, wait: 3 do
+      within release_path do
+        execute "cd #{release_path}"
+
+        restart_app
+      end
+    end
+  end
+
+  task :restart_web do
+    on roles(:web), in: :sequence, wait: 3 do
+      within release_path do
+        execute "cd #{release_path}"
+
+        restart_web
+      end
+    end
+  end
+
   task :restart do
     on roles(:web), in: :sequence, wait: 3 do
       within release_path do
       	execute "cd #{release_path}"
 
-        sudo "docker-compose down"
-        
-        sudo "docker-compose build && docker-compose up -d"
+        sudo "docker-compose stop"
+        sudo "docker-compose up -d"
       end
     end
   end
 
   task :install do
-    on roles(:app) do
-      install_docker
+    on roles(:web), in: :sequence, wait: 3 do
+      within release_path do
+        execute "cd #{release_path}"
+
+        install_docker
+
+        sudo "docker-compose build"
+        sudo "docker-compose up -d"
+
+        install_db
+      end
     end
+  end
+
+  def restart_db
+  	sudo "docker-compose stop db"
+	  sudo "docker-compose up -d db"
+  end
+
+  def restart_app
+  	sudo "docker-compose stop app"
+	  sudo "docker-compose up -d app"
+  end
+
+  def restart_web
+  	sudo "docker-compose stop web"
+	  sudo "docker-compose up -d web"
   end
 
   def install_docker
   	sudo "curl -sSL https://git.io/install-docker | bash"
   end
 
-  after :published, :restart
+  def install_db
+  	sudo "docker-compose run app RAILS_ENV=production bundle exec rails db:create"
+  	sudo "docker-compose run app RAILS_ENV=production bundle exec rails db:migrate"
+  	sudo "docker-compose run app RAILS_ENV=production bundle exec rails db:seed"
+  end
 end
