@@ -46,7 +46,7 @@ namespace :deploy do
       within release_path do
       	execute "cd #{release_path}"
 
-      	sudo "docker-compose build"
+      	sudo "docker-compose build app"
 
       	sudo "docker-compose run app RAILS_ENV=production bundle exec rails db:migrate"
 
