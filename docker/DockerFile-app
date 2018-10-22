@@ -6,16 +6,19 @@ RUN apk --update add ca-certificates nodejs tzdata imagemagick bash &&\
     apk add --virtual .builddeps build-base ruby-dev libc-dev openssl linux-headers postgresql-dev \
     libxml2-dev libxslt-dev git curl
 
-WORKDIR /home/app/in_the_eyes
+
+ENV RAILS_ROOT /home/app/in_the_eyes
+
+WORKDIR $RAILS_ROOT
 
 RUN mkdir -p /home/app
 
-COPY Gemfile /home/app/in_the_eyes/Gemfile
-COPY Gemfile.lock /home/app/in_the_eyes/Gemfile.lock
+COPY Gemfile $RAILS_ROOT/Gemfile
+COPY Gemfile.lock $RAILS_ROOT/Gemfile.lock
 
 RUN bundle install --jobs 20 --retry 5 --without development test
 
-COPY . /home/app/in_the_eyes
+COPY . $RAILS_ROOT
 
 # Setting env up
 ENV RAILS_ENV='production'
