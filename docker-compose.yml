@@ -1,0 +1,6 @@
+web:
+  build: .
+  environment:
+    - RAILS_ENV=production
+  ports:
+   - "80:3000"
