@@ -3,7 +3,6 @@ lock "~> 3.11.0"
 
 set :application, "in_the_eyes"
 set :repo_url, "https://github.com/tuliang/in-the-eyes.git"
-set :branch, :master
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
