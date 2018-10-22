@@ -52,17 +52,9 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  # 其中`capistrano-rails`包含了以下三个插件。
-  # gem 'capistrano/bundler'
-  # gem 'capistrano/rails/assets'
-  # gem 'capistrano/rails/migrations'
-  # 你也可以分别一个个加进去，但是何必呢？这些基本都是`rails`部署必须的。
-  # 直接用`gem 'capistrano-rails'`这一个就好了。
-  gem 'capistrano-rails'
-
-  # 对`passenger`与`rbenv`的支持
-  gem 'capistrano-passenger'
-  gem 'capistrano-rbenv'
+  gem 'capistrano'
+  # support sudo
+  gem 'sshkit-sudo'
 end
 
 group :test do

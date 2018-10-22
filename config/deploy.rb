@@ -8,7 +8,7 @@ set :repo_url, "https://github.com/tuliang/in-the-eyes.git"
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/home/deploy/in_the_eyes"
+set :deploy_to, "/home/deploy/www/in_the_eyes"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -21,10 +21,10 @@ set :deploy_to, "/home/deploy/in_the_eyes"
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/database.yml", "config/master.key"
+# append :linked_files, "config/database.yml"
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+# append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -37,3 +37,31 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+
+namespace :deploy do
+
+  task :restart do
+    on roles(:web), in: :sequence, wait: 3 do
+      within release_path do
+        execute 'echo "stop ===>"'
+        execute "docker kill $(docker ps -q)"
+        
+        execute 'echo "start ===>"'
+        execute "cd #{release_path} && docker-compose build && docker-compose up -d"
+      end
+    end
+  end
+
+  task :install do
+    on roles(:app) do
+      install_docker
+    end
+  end
+
+  def install_docker
+  	sudo "curl -sSL https://git.io/install-docker | bash"
+  end
+
+  after :published, :restart
+end
