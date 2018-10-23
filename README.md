@@ -7,7 +7,7 @@
 - PostgreSQL
 - Nginx
 
-支持阿里云 `Ubuntu 16.04` 64位，其他环境未经过测试。
+服务器支持阿里云 `Ubuntu 16.04` 64位，本地支持  `MAC`，其他环境未经过测试。
 
 ### 准备工作
 #### 登陆服务器
@@ -111,3 +111,8 @@ cap production deploy:restart
 1. 重启所有服务
 >- docker-compose stop 
 >- docker-compose up -d  
+
+## TODO
+- 用户设置 IP，自动化完成准备工作
+- 优化安装/更新/重启等操作
+- 拆分自动化部署和项目代码
