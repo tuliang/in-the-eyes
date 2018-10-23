@@ -15,7 +15,7 @@ default: &default
   username: postgres  
   password:  
   pool: 5  
-  host: db 
+
 
 development:
   <<: *default
@@ -35,3 +35,4 @@ test:
 production:  
   <<: *default  
   database: in_the_eyes_production
+  host: db 
