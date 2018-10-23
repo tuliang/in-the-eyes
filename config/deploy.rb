@@ -46,9 +46,9 @@ namespace :deploy do
       within release_path do
       	execute "cd #{release_path}"
 
-      	sudo "docker-compose build app"
+      	sudo "docker-compose up -d --no-deps --build app"
 
-      	restart_app
+      	# restart_app
       end
     end
   end
