@@ -44,12 +44,17 @@ namespace :deploy do
   task :update do
     on roles(:web), in: :sequence, wait: 3 do
       within release_path do
-        execute "cd '#{release_path}/build_image/in-the-eyes' && git checkout master && git pull"
+        execute "cd #{release_path}/build_image/in-the-eyes && git checkout master && git pull"
 
         # sudo "cd '#{release_path}/build_image/in-the-eyes' && sh scripts/build-image"
         sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/build-image | bash"
 
-        restart_app
+        # execute "sudo -i"
+
+        # execute "cd #{release_path}/build_image/in-the-eyes"
+
+        # execute "cd '#{release_path}/build_image/in-the-eyes' && docker-compose stop app"
+        # execute "cd '#{release_path}/build_image/in-the-eyes' && docker-compose up -d app"
       end
     end
   end
