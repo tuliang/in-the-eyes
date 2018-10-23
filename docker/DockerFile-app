@@ -18,6 +18,7 @@ COPY Gemfile.lock $RAILS_ROOT/Gemfile.lock
 
 RUN bundle install --jobs 20 --retry 5 --without development test
 
+# Adding project files
 COPY . $RAILS_ROOT
 
 # Setting env up
@@ -25,8 +26,6 @@ ENV RAILS_ENV='production'
 ENV RACK_ENV='production'
 ENV SECRET_KEY_BASE=fake_secure_for_compile
 
-# Adding project files
-COPY . .
 RUN bundle exec rake assets:precompile
 
 EXPOSE 3000

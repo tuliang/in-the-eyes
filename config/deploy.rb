@@ -46,9 +46,11 @@ namespace :deploy do
       within release_path do
       	execute "cd #{release_path}"
 
-        execute "mkdir build_image"
-        execute "cd build_image"
-        execute "git clone https://github.com/tuliang/in-the-eyes.git"
+        # execute "mkdir build_image"
+        execute "cd build_image/in-the-eyes"
+        # execute "git clone https://github.com/tuliang/in-the-eyes.git"
+        execute "git checkout master"
+        execute "git pull"
 
 
         sudo "sh scripts/build-image"
