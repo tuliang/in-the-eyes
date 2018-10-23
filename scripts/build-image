@@ -7,7 +7,7 @@ image_name="in_the_eyes_app_image"
 version=$(date "+%Y%m%d%H%M%S")
 current_version=$IMAGE_VERSION
 
-docker build -f docker/DockerFile-app -t $image_name .
-docker tag $image_name:$current_version $image_name:$version
-
-echo $version > .previous-version
+cd '/home/deploy/www/in_the_eyes/current/build_image/in-the-eyes' &&\
+	docker build -f docker/DockerFile-app -t $image_name . &&\
+	docker tag $image_name:$current_version $image_name:$version &&\
+	echo $version > .previous-version
