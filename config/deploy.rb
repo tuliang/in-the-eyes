@@ -46,9 +46,12 @@ namespace :deploy do
       within release_path do
       	execute "cd #{release_path}"
 
-        sudo "docker-compose build app"
+        sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/build-image | bash"
 
-        restart_app
+        # sudo "docker build -f"
+        sudo "docker-compose pull"
+
+        # restart_app
       end
     end
   end
