@@ -100,10 +100,6 @@ namespace :deploy do
         execute "cd #{release_path}"
 
         install_docker
-
-        sudo "docker-compose build"
-        sudo "docker-compose up -d"
-
         install_db
       end
     end
@@ -139,8 +135,11 @@ namespace :deploy do
   end
 
   def install_docker
-    sudo "curl -sSL https://git.io/install-docker | bash"
+    sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/install-docker | bash"
+    
     sudo "docker-compose --version"
+    sudo "docker-compose build"
+    sudo "docker-compose up -d"
   end
 
   def install_db
