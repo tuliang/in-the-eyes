@@ -5,6 +5,7 @@ fi
 image_name="in_the_eyes_app_image"
 version=$(date "+%Y%m%d%H%M%S")
 current_version=$IMAGE_VERSION
+pwd
 echo "docker build -f docker/DockerFile-app -t $image_name ."
 docker build -f docker/DockerFile-app -t $image_name .
 echo "docker tag $image_name:$current_version $image_name:$version"

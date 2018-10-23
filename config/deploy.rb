@@ -44,20 +44,9 @@ namespace :deploy do
   task :update do
     on roles(:web), in: :sequence, wait: 3 do
       within release_path do
-      	execute "cd #{release_path}"
+        execute "cd '#{release_path}/build_image/in-the-eyes'; git checkout master; git pull"
 
-        # execute "mkdir build_image"
-        execute "cd build_image/in-the-eyes"
-        # execute "git clone https://github.com/tuliang/in-the-eyes.git"
-        execute "git checkout master"
-        execute "git pull"
-
-
-        sudo "sh scripts/build-image"
-        # sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/build-image | bash"
-
-        # sudo "docker build -f"
-        # sudo "docker-compose pull"
+        sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/build-image | bash"
 
         restart_app
       end
