@@ -32,8 +32,11 @@
 version: '3'
 volumes:  
   postgres_data: {} 
+  public: 
 services:  
   app:    
+    volumes:      
+       - public:/home/app/in_the_eyes
     build:      
       context: .
       dockerfile: ./docker/DockerFile-app
@@ -44,6 +47,8 @@ services:
     volumes:      
       - postgres_data:/var/lib/postgresql/data  
   web:    
+    volumes:      
+       - public:/home/app/in_the_eyes
     build:      
       context: .
       dockerfile: ./docker/DockerFile-web
