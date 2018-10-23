@@ -9,5 +9,3 @@ services:
     build:      
       context: .
       dockerfile: ./docker/DockerFile-app
-    links:      
-      - db  
