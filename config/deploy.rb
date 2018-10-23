@@ -41,7 +41,7 @@ set :deploy_to, "/home/deploy/www/in_the_eyes"
 
 namespace :deploy do
 
-  task :published do
+  task :update do
     on roles(:web), in: :sequence, wait: 3 do
       within release_path do
       	execute "cd #{release_path}"

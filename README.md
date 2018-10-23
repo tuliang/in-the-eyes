@@ -62,7 +62,7 @@ sudo service ssh restart
 参考文档
 - [Capistrano + Rails 5.2 自动化部署](https://ruby-china.org/topics/36899)
 
-### 获取眼中项目代码
+### 获取项目代码
 ```bash
 git clone https://github.com/tuliang/in-the-eyes.git
 cd in-the-eyes
@@ -72,11 +72,14 @@ bundle install
 
 ### 安装
 ```bash
+# 将项目代码发布到服务器
+cap production deploy
+# 安装
 cap production deploy:install
 ```
 #### 说明
-1. 登录到服务器
-2. 安装 docker
+1. 将项目代码发布到服务器
+2. 安装 docker & docker-compose
 3. 执行 docker-compose build
 4. 运行所有服务 docker-compose up -d
 5. 执行数据库的初始化
@@ -86,12 +89,11 @@ cap production deploy:install
 
 ### 更新
 ```bash
-cap production deploy
+cap production deploy:update
 ```
 #### 说明
-1. 登录到服务器
-2. 执行 `docker-compose build app` 构建最新的 Rails 服务
-3. 重启 Rails 服务
+1. 执行 `docker-compose build app` 构建最新的 Rails 服务
+2. 重启 Rails 服务
 >- docker-compose stop app 
 >- docker-compose up -d app  
 #### TODO
@@ -102,7 +104,6 @@ cap production deploy
 cap production deploy:restart
 ```
 #### 说明
-1. 登录到服务器
-2. 重启所有服务
+1. 重启所有服务
 >- docker-compose stop 
 >- docker-compose up -d  
