@@ -139,8 +139,10 @@ namespace :deploy do
   end
 
   def install_docker
-    sudo 'curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
-    sudo "chmod +x /usr/local/bin/docker-compose"
+    # sudo 'curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
+    # sudo "chmod +x /usr/local/bin/docker-compose"
+    sudo "bash -c 'curl -sSL http://mirrors.aliyun.com/docker-toolbox/linux/compose/1.22.0/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose'"
+    execute "curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sudo sh -s https://registry.docker-cn.com"
     sudo "docker-compose --version"
   end
 
