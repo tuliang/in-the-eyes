@@ -2,7 +2,7 @@ FROM ruby:2.5.3-alpine
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 
-RUN apk --update add ca-certificates nodejs tzdata imagemagick bash &&\
+RUN apk --update add ca-certificates nodejs tzdata imagemagick bash yarn &&\
     apk add --virtual .builddeps build-base ruby-dev libc-dev openssl linux-headers postgresql-dev \
     libxml2-dev libxslt-dev git curl
 

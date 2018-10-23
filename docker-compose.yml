@@ -41,7 +41,7 @@ services:
     build:      
       context: .
       dockerfile: ./docker/DockerFile-app
-    depends_on:      
+    links:      
       - db  
   db:    
     container_name: 'in_the_eyes_db'
@@ -55,7 +55,7 @@ services:
     build:      
       context: .
       dockerfile: ./docker/DockerFile-web
-    depends_on:      
+    links:      
       - app    
     ports:      
       - 80:80

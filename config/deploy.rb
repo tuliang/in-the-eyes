@@ -48,6 +48,8 @@ namespace :deploy do
 
       	sudo "docker-compose build app"
 
+      	sudo "docker-compose run app bundle exec rails db:migrate RAILS_ENV=production"
+
       	restart_app
       end
     end
