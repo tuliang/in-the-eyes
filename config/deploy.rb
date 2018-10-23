@@ -111,6 +111,19 @@ namespace :deploy do
     end
   end
 
+  task :build do
+    on roles(:web), in: :sequence, wait: 3 do
+      within release_path do
+        execute "cd #{release_path}"
+
+        sudo "docker-compose build"
+        sudo "docker-compose up -d"
+
+        install_db
+      end
+    end
+  end
+
   def restart_db
   	sudo "docker-compose stop db"
 	  sudo "docker-compose up -d db"
