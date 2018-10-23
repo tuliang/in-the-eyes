@@ -35,6 +35,7 @@ volumes:
   public: 
 services:  
   app:    
+    container_name: 'in_the_eyes_app'
     volumes:      
        - public:/home/app/in_the_eyes
     build:      
@@ -43,10 +44,12 @@ services:
     depends_on:      
       - db  
   db:    
+    container_name: 'in_the_eyes_db'
     image: postgres    
     volumes:      
       - postgres_data:/var/lib/postgresql/data  
   web:    
+    container_name: 'in_the_eyes_web'
     volumes:      
        - public:/home/app/in_the_eyes
     build:      
