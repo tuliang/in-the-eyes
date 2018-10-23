@@ -2,7 +2,7 @@
 if [ -z ${IMAGE_VERSION+x} ];then
   IMAGE_VERSION=latest
 fi
-image_name="in_the_eyes_app"
+image_name="in_the_eyes_app_image"
 version=$(date "+%Y%m%d%H%M%S")
 current_version=$IMAGE_VERSION
 echo "docker build -f docker/DockerFile-app -t $image_name ."

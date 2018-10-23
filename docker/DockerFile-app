@@ -9,16 +9,15 @@ RUN apk --update add ca-certificates nodejs tzdata imagemagick bash yarn &&\
 
 ENV RAILS_ROOT /home/app/in_the_eyes
 
-WORKDIR $RAILS_ROOT
+RUN mkdir -p $RAILS_ROOT
 
-RUN mkdir -p /home/app
+WORKDIR $RAILS_ROOT
 
 COPY Gemfile $RAILS_ROOT/Gemfile
 COPY Gemfile.lock $RAILS_ROOT/Gemfile.lock
 
 RUN bundle install --jobs 20 --retry 5 --without development test
 
-# Adding project files
 COPY . $RAILS_ROOT
 
 # Setting env up

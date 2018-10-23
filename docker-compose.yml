@@ -38,7 +38,7 @@ services:
     container_name: 'in_the_eyes_app'
     volumes:      
        - public:/home/app/in_the_eyes
-    image: in_the_eyes_app:latest
+    image: in_the_eyes_app_image:latest
     links:      
       - db  
   db:    
