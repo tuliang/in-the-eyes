@@ -48,8 +48,6 @@ namespace :deploy do
 
       	sudo "docker-compose build app"
 
-      	sudo "docker-compose run app bundle exec rails db:migrate RAILS_ENV=production"
-
       	restart_app
       end
     end
@@ -116,6 +114,7 @@ namespace :deploy do
       within release_path do
         execute "cd #{release_path}"
 
+        sudo "docker-compose stop"
         sudo "docker-compose build"
         sudo "docker-compose up -d"
 
@@ -140,7 +139,6 @@ namespace :deploy do
   end
 
   def install_docker
-  	# sudo "curl -sSL https://git.io/install-docker | bash"
     sudo 'curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
     sudo "chmod +x /usr/local/bin/docker-compose"
     sudo "docker-compose --version"
