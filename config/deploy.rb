@@ -46,12 +46,18 @@ namespace :deploy do
       within release_path do
       	execute "cd #{release_path}"
 
-        sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/build-image | bash"
+        execute "mkdir build_image"
+        execute "cd build_image"
+        execute "git clone https://github.com/tuliang/in-the-eyes.git"
+
+
+        sudo "sh scripts/build-image"
+        # sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/build-image | bash"
 
         # sudo "docker build -f"
-        sudo "docker-compose pull"
+        # sudo "docker-compose pull"
 
-        # restart_app
+        restart_app
       end
     end
   end

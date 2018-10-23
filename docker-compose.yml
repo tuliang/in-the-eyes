@@ -38,7 +38,7 @@ services:
     container_name: 'in_the_eyes_app'
     volumes:      
        - public:/home/app/in_the_eyes
-    image: tuliang:in_the_eyes:${IMAGE_VERSION:-latest}
+    image: in_the_eyes_app:latest
     links:      
       - db  
   db:    
