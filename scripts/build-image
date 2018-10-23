@@ -5,7 +5,8 @@ fi
 image_name="tuliang:in_the_eyes"
 version=$(date "+%Y%m%d%H%M%S")
 current_version=$IMAGE_VERSION
-echo "Tag: $current_version -> $version"
+echo "docker build -f docker/DockerFile-app -t $image_name"
 docker build -f docker/DockerFile-app -t $image_name
+echo "Tag: $current_version -> $version"
 docker tag $image_name:$current_version $image_name:$version
 echo $version > .previous-version
