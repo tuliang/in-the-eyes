@@ -89,11 +89,15 @@ cap production deploy:install
 
 ### 更新
 ```bash
+# 将项目代码发布到服务器
+cap production deploy
+# 更新
 cap production deploy:update
 ```
 #### 说明
-1. 执行 `docker-compose build app` 构建最新的 Rails 服务
-2. 重启 Rails 服务
+1. 将项目代码发布到服务器
+2. 执行 `docker-compose build app` 构建最新的 Rails 服务
+3. 重启 Rails 服务
 >- docker-compose stop app 
 >- docker-compose up -d app  
 #### TODO
