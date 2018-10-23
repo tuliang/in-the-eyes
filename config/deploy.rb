@@ -46,41 +46,9 @@ namespace :deploy do
       within release_path do
       	execute "cd #{release_path}"
 
-        # sudo "docker-compose build app"
-
-      	sudo "docker-compose -f docker-compose.prod.yml up -d app"
-
-      	# restart_app
-      end
-    end
-  end
-
-  task :restart_db do
-    on roles(:db), in: :sequence, wait: 3 do
-      within release_path do
-        execute "cd #{release_path}"
-
-        restart_db
-      end
-    end
-  end
-
-  task :restart_app do
-    on roles(:app), in: :sequence, wait: 3 do
-      within release_path do
-        execute "cd #{release_path}"
+        sudo "docker-compose build app"
 
         restart_app
-      end
-    end
-  end
-
-  task :restart_web do
-    on roles(:web), in: :sequence, wait: 3 do
-      within release_path do
-        execute "cd #{release_path}"
-
-        restart_web
       end
     end
   end
@@ -102,6 +70,7 @@ namespace :deploy do
         execute "cd #{release_path}"
 
         install_docker
+        docker_build
         install_db
       end
     end
@@ -112,36 +81,26 @@ namespace :deploy do
       within release_path do
         execute "cd #{release_path}"
 
-        sudo "docker-compose stop"
-        sudo "docker-compose build"
-        sudo "docker-compose up -d"
-
+        docker_build
         install_db
       end
     end
   end
 
-  def restart_db
-  	sudo "docker-compose stop db"
-	  sudo "docker-compose up -d db"
+  def docker_build
+    sudo "docker-compose build"
+    sudo "docker-compose up -d"
   end
 
   def restart_app
-  	sudo "docker-compose stop app"
-	  sudo "docker-compose up -d app"
-  end
-
-  def restart_web
-  	sudo "docker-compose stop web"
-	  sudo "docker-compose up -d web"
+    sudo "docker-compose stop app"
+    sudo "docker-compose up -d app"
   end
 
   def install_docker
     sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/install-docker | bash"
     
     sudo "docker-compose --version"
-    sudo "docker-compose build"
-    sudo "docker-compose up -d"
   end
 
   def install_db
