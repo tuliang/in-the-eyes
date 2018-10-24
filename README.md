@@ -117,6 +117,15 @@ cap production deploy:restart
 >- `docker-compose stop`
 >- `docker-compose up -d`
 
+### 初始化数据库数据
+```bash
+cap production deploy:seed
+```
+#### 说明
+1. 进入 `app_code` 目录
+2. 初始化数据库数据
+>- `rails db:seed`
+
 ## TODO
 - 用户设置 `IP`，自动化完成准备工作
 - 拆分项目代码，分为 `deploy` 和 `app` 项目

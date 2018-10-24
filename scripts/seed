@@ -1,0 +1,3 @@
+#!/bin/bash
+cd app_code &&\
+	docker-compose run app bundle exec rails db:seed RAILS_ENV=production

@@ -49,6 +49,14 @@ namespace :deploy do
     end
   end
 
+  task :seed do
+    on roles(:web), in: :sequence, wait: 3 do
+      within release_path do
+        sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/seed | bash"
+      end
+    end
+  end
+
   task :restart do
     on roles(:web), in: :sequence, wait: 3 do
       within release_path do
