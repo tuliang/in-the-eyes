@@ -107,7 +107,7 @@ cap production deploy:update
 5. 更新数据库
 >- `rails db:migrate`  
 
-### 重启
+### 重启所有服务
 ```bash
 cap production deploy:restart
 ```
@@ -116,6 +116,15 @@ cap production deploy:restart
 2. 重启所有服务
 >- `docker-compose stop`
 >- `docker-compose up -d`
+
+### 停止所有服务
+```bash
+cap production deploy:stop
+```
+#### 说明
+1. 进入 `app_code` 目录
+2. 重启所有服务
+>- `docker-compose stop`
 
 ### 初始化数据库数据
 ```bash

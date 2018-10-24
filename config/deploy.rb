@@ -83,6 +83,18 @@ namespace :deploy do
     end
   end
 
+  task :stop do
+    on roles(:web), in: :sequence, wait: 3 do
+      within release_path do
+        stop
+      end
+    end
+  end
+
+  def stop
+    sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/stop | bash"
+  end
+
   def init
     sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/init | bash"
   end
