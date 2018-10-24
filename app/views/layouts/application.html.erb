@@ -13,8 +13,8 @@
   </head>
 
   <body>
-    <header>
-      <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom">
+    <header class="bg-white border-bottom">
+      <div class="container d-flex flex-column flex-md-row align-items-center p-3 px-md-4">
         <h5 class="logo my-0 font-weight-normal navbar-brand"><%= link_to '首页', root_url, class: "text-dark" %></h5>
         <nav class="my-2 my-md-0 mr-md-3 mr-md-auto">
           <%= link_to '眼中', root_path, class: "p-2 text-dark" %>
@@ -22,16 +22,16 @@
           <%= link_to '照片', photos_path, class: "p-2 text-dark" %>
           <%= link_to '表情', emoticons_path, class: "p-2 text-dark" %>
         </nav>
-
+ 
         
+        <nav class="my-2 my-md-0 mr-md-3">
           <% if user_signed_in? %>
-          <nav class="my-2 my-md-0 mr-md-3">
             <%= link_to "图片管理", images_path, class: "p-2 text-dark" %>
             <%= link_to "发布", new_image_path, class: "p-2 text-dark" %>
-            </nav>
+          <% else %>
+            <%= link_to "注册", new_registration_path(:user), class: "p-2 text-dark" %>
           <% end %>
-        
-
+        </nav>
         
         <% if user_signed_in? %>
           <%= link_to "退出", destroy_user_session_path, class: "btn btn-outline-primary", method: :delete %>
@@ -42,17 +42,19 @@
     </header>
 
     <main role="main">
-
-      <%= yield %>
-
+      <div class="py-5 bg-light">
+        <div class="container">
+          <%= yield %>
+        </div>
+      </div>
     </main>
 
     <footer class="text-muted">
-      <div class="container">
+      <div class="container pt-4 my-md-5 pt-md-5 border-top">
         <p class="float-right">
           <a href="#">Back to top</a>
         </p>
-        <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+        <p>本站使用 Ruby 2.5.3 / Rails 5.2.1 / Capistrano / Docker & Docker Compose / PostgreSQL / Nginx</p>
       </div>
     </footer>
   </body>
