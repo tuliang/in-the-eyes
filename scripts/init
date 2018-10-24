@@ -1,8 +1,11 @@
 #!/bin/bash
+image_name="in_the_eyes_app_image"
+
 git clone https://github.com/tuliang/in-the-eyes.git app_code
 
 cd app_code &&\
 	git checkout master &&\
+	docker build -f docker/DockerFile-app -t $image_name . &&\
 	docker-compose build &&\
 	docker-compose up -d &&\
 	docker-compose run app bundle exec rails db:create RAILS_ENV=production &&\
