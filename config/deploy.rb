@@ -44,9 +44,7 @@ namespace :deploy do
   task :update do
     on roles(:web), in: :sequence, wait: 3 do
       within release_path do
-        execute "cd #{release_path}/build_image/in-the-eyes && git checkout master && git pull"
-
-        sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/build-image | bash"
+        sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/update | bash"
       end
     end
   end
