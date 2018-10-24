@@ -1,0 +1,13 @@
+#!/bin/bash
+mkdir -p build_image
+
+cd build_image &&\
+	git clone https://github.com/tuliang/in-the-eyes.git
+
+cd in-the-eyes &&\
+	git checkout master &&\
+	docker-compose build &&\
+	docker-compose up -d &&\
+	docker-compose run app bundle exec rails db:create RAILS_ENV=production &&\
+	docker-compose run app bundle exec rails db:migrate RAILS_ENV=production &&\
+	docker-compose run app bundle exec rails db:seed RAILS_ENV=production

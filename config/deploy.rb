@@ -68,21 +68,27 @@ namespace :deploy do
         execute "cd #{release_path}"
 
         install_docker
-        docker_build
-        install_db
+        
+        init
       end
     end
   end
 
-  task :build do
+  task :init do
     on roles(:web), in: :sequence, wait: 3 do
       within release_path do
         execute "cd #{release_path}"
 
-        docker_build
-        install_db
+        init
       end
     end
+  end
+
+  def init
+    # docker_build
+    # install_db
+
+    sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/init | bash"
   end
 
   def docker_build
