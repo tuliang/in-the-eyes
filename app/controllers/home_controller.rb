@@ -11,4 +11,18 @@ class HomeController < ApplicationController
 
   	render :index
   end
+
+  # GET /photos
+  def photos
+  	@images = Image.where(image_type: 2)
+
+  	render :index
+  end
+
+  # GET /emoticons
+  def emoticons
+  	@images = Image.where(image_type: 3)
+
+  	render :index
+  end
 end

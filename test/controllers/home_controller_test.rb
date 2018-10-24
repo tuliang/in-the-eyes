@@ -14,4 +14,14 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     get pictures_url
     assert_response :success
   end
+
+  test "should get photos" do
+    get photos_url
+    assert_response :success
+  end
+
+  test "should get emoticons" do
+    get emoticons_url
+    assert_response :success
+  end
 end
