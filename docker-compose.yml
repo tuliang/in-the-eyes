@@ -32,12 +32,11 @@
 version: '3'
 volumes:  
   postgres_data: {} 
-tmpfs:
   public: 
 services:  
   app:    
     container_name: 'in_the_eyes_app'
-    tmpfs:      
+    volumes:      
        - public:/home/app/in_the_eyes/public
     image: in_the_eyes_app_image:latest
     links:      
@@ -49,7 +48,7 @@ services:
       - postgres_data:/var/lib/postgresql/data  
   web:    
     container_name: 'in_the_eyes_web'
-    tmpfs:      
+    volumes:      
        - public:/home/app/in_the_eyes/public
     build:      
       context: .
