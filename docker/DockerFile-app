@@ -18,7 +18,7 @@ COPY Gemfile.lock $RAILS_ROOT/Gemfile.lock
 
 RUN bundle install --jobs 20 --retry 5 --without development test
 
-COPY . $RAILS_ROOT
+COPY . .
 
 # Setting env up
 ENV RAILS_ENV='production'
