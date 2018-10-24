@@ -60,8 +60,6 @@ namespace :deploy do
   task :install do
     on roles(:web), in: :sequence, wait: 3 do
       within release_path do
-        execute "cd #{release_path}"
-
         install_docker
 
         init

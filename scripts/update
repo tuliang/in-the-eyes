@@ -7,7 +7,7 @@ image_name="in_the_eyes_app_image"
 version=$(date "+%Y%m%d%H%M%S")
 current_version=$IMAGE_VERSION
 
-cd build_image/in-the-eyes &&\
+cd app_code &&\
 	git checkout master &&\
 	git pull &&\
 	docker build -f docker/DockerFile-app -t $image_name . &&\

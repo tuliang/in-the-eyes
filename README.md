@@ -1,14 +1,16 @@
 ## 眼中
 
-项目中使用：
-- Ruby 2.5.3
-- Rails 5.2.1
-- Capistrano
-- Docker & Docker Compose
-- PostgreSQL
-- Nginx
+@(Inbox)
 
-服务器支持阿里云 `Ubuntu 16.04` 64位，本地支持  `MAC`，其他环境未经过测试。
+项目中使用：
+- `Ruby 2.5.3`
+- `Rails 5.2.1`
+- `Capistrano`
+- `Docker & Docker Compose`
+- `PostgreSQL`
+- `Nginx`
+
+服务器支持阿里云 `Ubuntu 16.04` `64` 位，本地支持  `MAC`，其他环境未经过测试。
 
 ### 准备工作
 #### 登陆服务器
@@ -79,14 +81,16 @@ cap production deploy
 cap production deploy:install
 ```
 #### 说明
-1. 将项目代码发布到服务器
+1. 将 `deploy` 项目代码发布到服务器
 2. 安装 `docker & docker-compose`
-3. 执行 `docker-compose build`
-4. 运行所有服务 `docker-compose up -d`
-5. 初始化数据库
->- rails db:create  
->- rails db:migrate  
->- rails db:seed
+3. 下载 `app` 项目代码到 `app_code` 目录
+4. 进入 `app_code` 目录
+5. 执行 `docker-compose build`
+6. 运行所有服务 `docker-compose up -d`
+7. 初始化数据库
+>- `rails db:create`
+>- `rails db:migrate`  
+>- `rails db:seed`
 
 ### 更新
 ```bash
@@ -94,24 +98,27 @@ cap production deploy:install
 cap production deploy:update
 ```
 #### 说明
-1. 更新项目代码
-2. 执行 `docker build` 构建最新的 Rails 服务 image 
-3. 重启 Rails 服务
->- docker-compose stop app 
->- docker-compose up -d app  
-4. 更新数据库
-- 支持 `rails db:migrate`
+1. 进入 `app_code` 目录
+2. 更新 `app` 项目代码
+3. 执行 `docker build` 构建 `app` 服务的 `image`
+4. 重启 `app` 服务
+>- `docker-compose stop app`
+>- `docker-compose up -d app`
+
+5. 更新数据库
+>- `rails db:migrate`  
 
 ### 重启
 ```bash
 cap production deploy:restart
 ```
 #### 说明
-1. 重启所有服务
->- docker-compose stop 
->- docker-compose up -d  
+1. 进入 `app_code` 目录
+2. 重启所有服务
+>- `docker-compose stop`
+>- `docker-compose up -d`
 
 ## TODO
-- 用户设置 IP，自动化完成准备工作
-- 拆分自动化部署和项目代码
-- 回滚 rollback
+- 用户设置 `IP`，自动化完成准备工作
+- 拆分项目代码，分为 `deploy` 和 `app` 项目
+- 回滚 `rollback`
