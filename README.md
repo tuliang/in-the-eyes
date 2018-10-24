@@ -1,4 +1,5 @@
 ## 眼中
+
 项目中使用：
 - Ruby 2.5.3
 - Rails 5.2.1
@@ -79,28 +80,26 @@ cap production deploy:install
 ```
 #### 说明
 1. 将项目代码发布到服务器
-2. 安装 docker & docker-compose
-3. 执行 docker-compose build
-4. 运行所有服务 docker-compose up -d
-5. 执行数据库的初始化
+2. 安装 `docker & docker-compose`
+3. 执行 `docker-compose build`
+4. 运行所有服务 `docker-compose up -d`
+5. 初始化数据库
 >- rails db:create  
 >- rails db:migrate  
 >- rails db:seed
 
 ### 更新
 ```bash
-# 将项目代码发布到服务器
-cap production deploy
 # 更新
 cap production deploy:update
 ```
 #### 说明
-1. 将项目代码发布到服务器
-2. 执行 `docker-compose build app` 构建最新的 Rails 服务
+1. 更新项目代码
+2. 执行 `docker build` 构建最新的 Rails 服务 image 
 3. 重启 Rails 服务
 >- docker-compose stop app 
 >- docker-compose up -d app  
-#### TODO
+4. 更新数据库
 - 支持 `rails db:migrate`
 
 ### 重启
@@ -114,5 +113,5 @@ cap production deploy:restart
 
 ## TODO
 - 用户设置 IP，自动化完成准备工作
-- 优化安装/更新/重启等操作
 - 拆分自动化部署和项目代码
+- 回滚 rollback
