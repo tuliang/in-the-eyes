@@ -1,5 +1,13 @@
 # Base image:
 FROM nginx
+
+# 更新 163 源
+RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
+    echo "deb http://mirrors.163.com/debian/ jessie main non-free contrib" >/etc/apt/sources.list && \
+    echo "deb http://mirrors.163.com/debian/ jessie-proposed-updates main non-free contrib" >>/etc/apt/sources.list && \
+    echo "deb-src http://mirrors.163.com/debian/ jessie main non-free contrib" >>/etc/apt/sources.list && \
+    echo "deb-src http://mirrors.163.com/debian/ jessie-proposed-updates main non-free contrib" >>/etc/apt/sources.list
+
 # Install dependencies
 RUN apt-get update -qq && apt-get -y install apache2-utils
 
@@ -13,7 +21,7 @@ WORKDIR $RAILS_ROOT
 RUN mkdir log
 
 # copy over static assets
-COPY public public/
+#COPY public public/
 
 # Copy Nginx config template
 COPY docker/nginx.conf /tmp/docker.nginx
