@@ -1,7 +1,5 @@
 ## 眼中
 
-@(Inbox)
-
 项目中使用：
 - `Ruby 2.5.3`
 - `Rails 5.2.1`
@@ -85,9 +83,10 @@ cap production deploy:install
 2. 安装 `docker & docker-compose`
 3. 下载 `app` 项目代码到 `app_code` 目录
 4. 进入 `app_code` 目录
-5. 执行 `docker-compose build`
-6. 运行所有服务 `docker-compose up -d`
-7. 初始化数据库
+5. 执行 `docker build` 构建 `app` 服务的 `image`
+6. 执行 `docker-compose build`
+8. 运行所有服务 `docker-compose up -d`
+9. 初始化数据库
 >- `rails db:create`
 >- `rails db:migrate`  
 >- `rails db:seed`
@@ -122,3 +121,4 @@ cap production deploy:restart
 - 用户设置 `IP`，自动化完成准备工作
 - 拆分项目代码，分为 `deploy` 和 `app` 项目
 - 回滚 `rollback`
+- `DockerFile-web` 改为国内源加速 `build`
