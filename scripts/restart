@@ -1,0 +1,4 @@
+#!/bin/bash
+cd build_image/in-the-eyes &&\
+	docker-compose stop &&\
+	docker-compose up -d

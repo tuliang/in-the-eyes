@@ -54,10 +54,7 @@ namespace :deploy do
   task :restart do
     on roles(:web), in: :sequence, wait: 3 do
       within release_path do
-      	execute "cd #{release_path}"
-
-        sudo "docker-compose stop"
-        sudo "docker-compose up -d"
+        sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/restart | bash"
       end
     end
   end
@@ -68,7 +65,7 @@ namespace :deploy do
         execute "cd #{release_path}"
 
         install_docker
-        
+
         init
       end
     end
@@ -77,39 +74,18 @@ namespace :deploy do
   task :init do
     on roles(:web), in: :sequence, wait: 3 do
       within release_path do
-        execute "cd #{release_path}"
-
         init
       end
     end
   end
 
   def init
-    # docker_build
-    # install_db
-
     sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/init | bash"
-  end
-
-  def docker_build
-    sudo "docker-compose build"
-    sudo "docker-compose up -d"
-  end
-
-  def restart_app
-    sudo "docker-compose stop app"
-    sudo "docker-compose up -d app"
   end
 
   def install_docker
     sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/install-docker | bash"
     
     sudo "docker-compose --version"
-  end
-
-  def install_db
-  	sudo "docker-compose run app bundle exec rails db:create RAILS_ENV=production"
-  	sudo "docker-compose run app bundle exec rails db:migrate RAILS_ENV=production"
-  	sudo "docker-compose run app bundle exec rails db:seed RAILS_ENV=production"
   end
 end
