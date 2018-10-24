@@ -6,6 +6,8 @@ class ImagesController < ApplicationController
   # GET /images.json
   def index
     @images = Image.all
+
+    render 'home/index'
   end
 
   # GET /images/1
