@@ -32,6 +32,7 @@
 version: '3'
 volumes:  
   postgres_data: {} 
+tmpfs:
   public: 
 services:  
   app:    
