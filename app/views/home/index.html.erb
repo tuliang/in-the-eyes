@@ -5,7 +5,7 @@
       <% @images.each do |image| %>
         <div class="col-md-3">
           <div class="card mb-3 box-shadow">
-            <%= image_tag "language-fanboys.jpg", class: "card-img-top", alt: "Card image cap" %>
+            <%= image_tag "image-#{image.image_type}.jpg", class: "card-img-top", alt: "Card image cap" %>
             <div class="card-body">
               <p class="card-title"><%= image.title %></p>
               <div class="d-flex justify-content-between align-items-center">
