@@ -17,5 +17,8 @@ module InTheEyes
     # the framework and any gems in your application.
 
     config.time_zone = "Beijing"
+
+    config.i18n.default_locale = "zh-CN"
+    config.i18n.available_locales = ["zh-CN"]
   end
 end
