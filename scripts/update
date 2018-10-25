@@ -15,4 +15,5 @@ cd app_code &&\
 	echo $version > .previous-version &&\
 	docker-compose stop app &&\
 	docker-compose up -d app &&\
+	docker-compose run app bundle exec rake assets:precompile RAILS_ENV=production
 	docker-compose run app bundle exec rails db:migrate RAILS_ENV=production
