@@ -16,12 +16,13 @@
   </div>
 
   <div class="form-label-group">
+    <%= form.label :title, "标题" %>
     <%= form.text_field :title, autofocus: true, required: true, placeholder: "标题", class: "form-control" %>
   </div>
 
   <div class="form-label-group">
-    <%= form.label :image_type, "图片类型" %>
-    <%= form.enum_select :image_type, {}, { required: true, placeholder: "图片类型", class: "form-control" } %>
+    <%= form.label :image_type, "类型" %>
+    <%= form.enum_select :image_type, {}, { required: true, placeholder: "类型", class: "form-control" } %>
   </div>
 
   <%= form.submit "提交", class: "btn btn-lg btn-primary btn-block" %>
