@@ -139,4 +139,4 @@ cap production deploy:seed
 - 用户设置 `IP`，自动化完成准备工作
 - 拆分项目代码，分为 `deploy` 和 `app` 项目
 - 回滚 `rollback`
-- `DockerFile-web` 改为国内源加速 `build`
+- 完善发布图片
