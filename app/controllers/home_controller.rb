@@ -2,26 +2,26 @@ class HomeController < ApplicationController
 
   # GET /
   def index
-  	@images = Image.where(image_type: 0)
+  	@images = Image.eyes
   end
 
   # GET /pictures
   def pictures
-  	@images = Image.where(image_type: 1)
+  	@images = Image.pictures
 
   	render :index
   end
 
   # GET /photos
   def photos
-  	@images = Image.where(image_type: 2)
+  	@images = Image.photos
 
   	render :index
   end
 
   # GET /emoticons
   def emoticons
-  	@images = Image.where(image_type: 3)
+  	@images = Image.emoticons
 
   	render :index
   end
