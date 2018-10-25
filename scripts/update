@@ -13,7 +13,7 @@ cd app_code &&\
 	docker build -f docker/DockerFile-app -t $image_name . &&\
 	docker tag $image_name:$current_version $image_name:$version &&\
 	echo $version > .previous-version &&\
+	docker-compose run app bundle exec rake assets:precompile RAILS_ENV=production &&\
 	docker-compose stop app &&\
 	docker-compose up -d app &&\
-	docker-compose run app bundle exec rake assets:precompile RAILS_ENV=production
 	docker-compose run app bundle exec rails db:migrate RAILS_ENV=production
