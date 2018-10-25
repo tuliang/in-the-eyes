@@ -6,6 +6,8 @@ git clone https://github.com/tuliang/in-the-eyes.git app_code
 cd app_code &&\
 	git checkout master &&\
 	docker build -f docker/DockerFile-app -t $image_name . &&\
+	# rake assets:precompile 在 DockerFile 中执行不生效 移动到外面执行
+	docker-compose run app bundle exec rake assets:precompile RAILS_ENV=production &&\
 	docker-compose build &&\
 	docker-compose up -d &&\
 	docker-compose run app bundle exec rails db:create RAILS_ENV=production &&\
