@@ -20,7 +20,8 @@
   </div>
 
   <div class="form-label-group">
-    <%= form.text_field :image_type, required: true, placeholder: "图片类型", class: "form-control" %>
+    <%= form.label :image_type, "图片类型" %>
+    <%= form.enum_select :image_type, {}, { required: true, placeholder: "图片类型", class: "form-control" } %>
   </div>
 
   <%= form.submit "提交", class: "btn btn-lg btn-primary btn-block" %>

@@ -6,7 +6,7 @@ class ImageTest < ActiveSupport::TestCase
   	images(:eye)
 
   	Image.eyes.each do |image|
-      assert_equal(image.image_type, "eye")
+      assert_equal(image.image_type, Image.image_types[:eye])
   	end
   end
 
@@ -14,7 +14,7 @@ class ImageTest < ActiveSupport::TestCase
   	images(:picture)
 
   	Image.pictures.each do |image|
-      assert_equal(image.image_type, "picture")
+      assert_equal(image.image_type, Image.image_types[:picture])
   	end
   end
 
@@ -22,7 +22,7 @@ class ImageTest < ActiveSupport::TestCase
   	images(:photo)
 
   	Image.photos.each do |image|
-      assert_equal(image.image_type, "photo")
+      assert_equal(image.image_type, Image.image_types[:photo])
   	end
   end
 
@@ -30,7 +30,7 @@ class ImageTest < ActiveSupport::TestCase
   	images(:emoticon)
 
   	Image.emoticons.each do |image|
-      assert_equal(image.image_type, "emoticon")
+      assert_equal(image.image_type, Image.image_types[:emoticon])
   	end
   end
 end

@@ -1,10 +1,10 @@
 class Image < ApplicationRecord
-  scope :eyes, -> { where(image_type: %i[eye]) }
-  scope :pictures, -> { where(image_type: %i[picture]) }
-  scope :photos, -> { where(image_type: %i[photo]) }
-  scope :emoticons, -> { where(image_type: %i[emoticon]) }
+  scope :eyes, -> { where(image_type: Image.image_types[:eye]) }
+  scope :pictures, -> { where(image_type: Image.image_types[:picture]) }
+  scope :photos, -> { where(image_type: Image.image_types[:photo]) }
+  scope :emoticons, -> { where(image_type: Image.image_types[:emoticon]) }
 
   scope :latest, -> { order(updated_at: :desc) }
 
-  enum image_type: { eye: 0, picture: 1, photo: 2, emoticon: 3 }
+  enum image_types: { eye: 0, picture: 1, photo: 2, emoticon: 3 }
 end

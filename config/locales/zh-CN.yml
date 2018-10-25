@@ -1,5 +1,12 @@
 ---
 zh-CN:
+  enums:
+    image:
+      image_types:
+        eye: "眼中"
+        picture: "绘画"
+        photo: "照片"
+        emoticon: "表情"
   activerecord:
     errors:
       messages:
