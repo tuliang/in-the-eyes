@@ -1,4 +1,4 @@
-<%= form_with(model: image, local: true) do |form| %>
+<%= form_with(model: image, local: true, html: { class: "form-signin py-5" } ) do |form| %>
   <% if image.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
@@ -11,17 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="text-center mb-4">
+    <h1 class="h3 mb-3 font-weight-normal"><%= title %></h1>
   </div>
 
-  <div class="field">
-    <%= form.label :image_type %>
-    <%= form.number_field :image_type %>
+  <div class="form-label-group">
+    <%= form.text_field :title, autofocus: true, required: true, placeholder: "标题", class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-label-group">
+    <%= form.text_field :image_type, required: true, placeholder: "图片类型", class: "form-control" %>
   </div>
+
+  <%= form.submit "提交", class: "btn btn-lg btn-primary btn-block" %>
 <% end %>
