@@ -4,5 +4,7 @@ class Image < ApplicationRecord
   scope :photos, -> { where(image_type: %i[photo]) }
   scope :emoticons, -> { where(image_type: %i[emoticon]) }
 
+  scope :latest, -> { order(updated_at: :desc) }
+
   enum image_type: { eye: 0, picture: 1, photo: 2, emoticon: 3 }
 end

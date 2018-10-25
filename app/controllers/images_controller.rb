@@ -5,7 +5,7 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    @images = Image.where(user_id: current_user.id)
+    @images = Image.where(user_id: current_user.id).latest
 
     render 'home/index'
   end
