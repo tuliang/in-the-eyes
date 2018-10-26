@@ -24,7 +24,7 @@ RUN mkdir log
 #COPY public public/
 
 # Copy Nginx config template
-COPY docker/nginx.conf /etc/nginx/nginx.conf
+#COPY docker/nginx.conf /etc/nginx/nginx.conf
 COPY docker/app.conf /tmp/docker.nginx
 
 # substitute variable references in the Nginx config template for real values from the environment
