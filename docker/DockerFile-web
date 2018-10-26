@@ -9,7 +9,7 @@ RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
     echo "deb-src http://mirrors.163.com/debian/ jessie-proposed-updates main non-free contrib" >>/etc/apt/sources.list
 
 # Install dependencies
-RUN apt-get update -qq && apt-get -y install apache2-utils
+RUN apt-get update -qq && apt-get -y install apache2-utils vim
 
 # establish where Nginx should look for files
 ENV RAILS_ROOT /home/app/in_the_eyes
@@ -20,11 +20,9 @@ WORKDIR $RAILS_ROOT
 # create log directory
 RUN mkdir log
 
-# copy over static assets
-#COPY public public/
-
 # Copy Nginx config template
-COPY docker/nginx.conf /tmp/docker.nginx
+COPY docker/nginx.conf /etc/nginx/nginx.conf
+COPY docker/default.conf /tmp/docker.nginx
 
 # substitute variable references in the Nginx config template for real values from the environment
 # put the final config in its place
