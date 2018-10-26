@@ -33,7 +33,7 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       if @image.save
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
+        format.html { redirect_to @image, notice: '创建成功。' }
         format.json { render :show, status: :created, location: @image }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class ImagesController < ApplicationController
   def update
     respond_to do |format|
       if @image.update(image_params)
-        format.html { redirect_to @image, notice: 'Image was successfully updated.' }
+        format.html { redirect_to @image, notice: '更新成功。' }
         format.json { render :show, status: :ok, location: @image }
       else
         format.html { render :edit }
@@ -62,19 +62,20 @@ class ImagesController < ApplicationController
     @image.destroy
 
     respond_to do |format|
-      format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
+      format.html { redirect_to images_url, notice: '删除成功。' }
       format.json { head :no_content }
     end
   end
 
   private
     def check_user
-      redirect_back(fallback_location: root_path, notice: '很抱歉，您无权访问此页面。') if current_user.id != @image.user_id
+      redirect_back(fallback_location: root_path, alert: '很抱歉，您无权访问此页面。') if current_user.id != @image.user_id
     end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_image
-      @image = Image.find(params[:id])
+      @image = Image.find_by_id(params[:id])
+      redirect_back(fallback_location: root_path, alert: '很抱歉，您无权访问此页面。') if @image.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

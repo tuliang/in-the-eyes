@@ -43,9 +43,10 @@
     <main role="main">
       <div class="py-5 bg-light">
         <div class="container">
-
-          <% if flash[:notice] %>
-            <div class="notice"><%= flash[:notice] %></div>
+          <% flash.each do |key, value| %>
+            <div class="<%= flash_class_helper(key) %>">
+              <%= value %>
+            </div>
           <% end %>
     
           <%= yield %>
