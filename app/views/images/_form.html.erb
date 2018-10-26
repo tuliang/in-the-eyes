@@ -26,9 +26,19 @@
   </div>
 
   <div class="form-label-group">
-    <%= form.label :image, "图片" %>
-    <%= form.file_field :image, required: true, placeholder: "类型", class: "form-control" %>
+    <%= form.label :file, "图片" %>
+    <% if image.file_url.present? %>
+      <%= form.file_field :file, placeholder: "图片", class: "form-control" %>
+    <% else %>
+      <%= form.file_field :file, required: true, placeholder: "图片", class: "form-control" %>
+    <% end %>
   </div>
+
+  <% if image.file_url.present? %>
+    <div class="form-label-group">
+      <%= image_tag image.file_url, class: "form-control" %>
+    </div>
+  <% end %>
 
   <%= form.submit "提交", class: "btn btn-lg btn-primary btn-block" %>
 <% end %>

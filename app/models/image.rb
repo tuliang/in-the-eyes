@@ -1,4 +1,8 @@
 class Image < ApplicationRecord
+  mount_uploader :file, ImageUploader
+
+  belongs_to :user 
+
   scope :eyes, -> { where(image_type: Image.image_types[:eye]) }
   scope :pictures, -> { where(image_type: Image.image_types[:picture]) }
   scope :photos, -> { where(image_type: Image.image_types[:photo]) }

@@ -2,17 +2,17 @@
   <% @images.each do |image| %>
     <div class="col-md-3">
       <div class="card mb-3 box-shadow">
-        <div class="card-img-top" style="border-bottom:1px solid rgba(0, 0, 0, 0.125);height:300px;background-size:cover;background-position:center center;background-image:url(<%= asset_path "image-#{Image.image_types.key(image.image_type)}.jpg" %>);"></div>
+        <div class="card-img-top" style="border-bottom:1px solid rgba(0, 0, 0, 0.125);height:300px;background-size:cover;background-position:center center;background-image:url(<%= asset_path(file_url_helper(image)) %>);"></div>
         <div class="card-body">
           <p class="card-title"><%= image.title %></p>
           <div class="d-flex justify-content-between align-items-center">
-            <% if user_signed_in? %>
+            <small class="text-muted"><%= time_ago_in_words image.created_at %>前更新</small>
+            <% if user_signed_in? && controller_name == "images" %>
               <div class="btn-group">
                 <%= link_to '修改', edit_image_path(image), class: "btn btn-sm btn-outline-secondary" %>
                 <%= link_to '删除', image, method: :delete, data: { confirm: '确定删除?' }, class: "btn btn-sm btn-outline-danger" %>
               </div>
             <% end %>
-            <small class="text-muted"><%= time_ago_in_words image.created_at %></small>
           </div>
         </div>
       </div>
