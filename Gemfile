@@ -66,6 +66,8 @@ group :development do
   gem 'capistrano'
   # support sudo
   gem 'sshkit-sudo'
+
+  gem 'pry'
 end
 
 group :test do
