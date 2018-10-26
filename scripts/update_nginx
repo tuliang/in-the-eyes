@@ -1,0 +1,6 @@
+#!/bin/bash
+cd app_code &&\
+	git checkout master &&\
+	git pull &&\
+	docker-compose stop web &&\
+	docker-compose up -d web

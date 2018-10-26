@@ -41,6 +41,14 @@ set :deploy_to, "/home/deploy/www/in_the_eyes"
 
 namespace :deploy do
 
+  task :update_nginx do
+    on roles(:web), in: :sequence, wait: 3 do
+      within release_path do
+        sudo "curl -sSL https://raw.githubusercontent.com/tuliang/in-the-eyes/master/scripts/update_nginx | bash"
+      end
+    end
+  end
+
   task :update do
     on roles(:web), in: :sequence, wait: 3 do
       within release_path do
