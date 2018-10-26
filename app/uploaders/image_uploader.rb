@@ -43,6 +43,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-    "#{model.id}__#{Time.now.to_i}.#{original_filename.split(".").last}" if original_filename
+    "#{Time.now.to_i}.#{original_filename.split(".").last}" if original_filename
   end
 end
