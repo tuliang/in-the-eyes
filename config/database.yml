@@ -35,4 +35,4 @@ test:
 production:  
   <<: *default  
   database: in_the_eyes_production
-  host: db 
+  host: db
