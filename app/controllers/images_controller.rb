@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
   before_action :set_image, only: [:show, :edit, :update, :destroy]
   before_action :check_user, only: [:edit, :update, :destroy]
 
