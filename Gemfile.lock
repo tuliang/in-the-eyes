@@ -105,6 +105,10 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.2.2)
+    dotenv-rails (2.2.2)
+      dotenv (= 2.2.2)
+      railties (>= 3.2, < 6.0)
     enum_help (0.0.17)
       activesupport (>= 3.0.0)
     erubi (1.7.1)
@@ -269,6 +273,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  dotenv-rails
   enum_help
   jbuilder (~> 2.5)
   jquery-rails

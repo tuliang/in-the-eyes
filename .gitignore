@@ -31,3 +31,4 @@
 /config/master.key
 
 .previous-version
+.env
