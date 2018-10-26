@@ -2,7 +2,10 @@
   <% @images.each do |image| %>
     <div class="col-md-3">
       <div class="card mb-3 box-shadow">
-        <div class="card-img-top" style="border-bottom:1px solid rgba(0, 0, 0, 0.125);height:300px;background-size:cover;background-position:center center;background-image:url(<%= asset_path(file_url_helper(image)) %>);"></div>
+        <%= link_to image_path(image), target: "_blank" do %>
+          <div class="card-img-top" style="border-bottom:1px solid rgba(0, 0, 0, 0.125);height:300px;background-size:cover;background-position:center center;background-image:url(<%= asset_path(file_url_helper(image)) %>);"></div>
+        <% end %>
+        
         <div class="card-body">
           <p class="card-title"><%= image.title %></p>
           <div class="d-flex justify-content-between align-items-center">

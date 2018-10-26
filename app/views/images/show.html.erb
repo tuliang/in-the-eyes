@@ -1,12 +1,21 @@
-<p>
-  <strong>Title:</strong>
-  <%= @image.title %>
-</p>
+<div class="row">
 
-<p>
-  <strong>Image type:</strong>
-  <%= @image.image_type %>
-</p>
+    <div class="col-md-12">
+      <div class="card mb-12 box-shadow">
+        <div class="card-body">
+          <p class="card-title"><%= @image.title %></p>
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted"><%= time_ago_in_words @image.created_at %>前更新</small>
+            <% if user_signed_in? && current_user.id == @image.user_id %>
+              <div class="btn-group">
+                <%= link_to '修改', edit_image_path(@image), class: "btn btn-sm btn-outline-secondary" %>
+                <%= link_to '删除', @image, method: :delete, data: { confirm: '确定删除?' }, class: "btn btn-sm btn-outline-danger" %>
+              </div>
+            <% end %>
+          </div>
+          <div class="card-img py-3"><%= image_tag(file_url_helper(@image), class: "img-fluid") %></div>
+        </div>
+      </div>
+    </div>
 
-<%= link_to 'Edit', edit_image_path(@image) %> |
-<%= link_to 'Back', images_path %>
+</div>
