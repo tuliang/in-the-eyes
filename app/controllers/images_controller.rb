@@ -1,14 +1,14 @@
 class ImagesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   before_action :set_image, only: [:show, :edit, :update, :destroy]
-  before_action :check_user, only: [:edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /images
   # GET /images.json
   def index
     @images = current_user.images.latest
 
-    render 'home/index'
+    render 'home/index'.freeze
   end
 
   # GET /images/1
@@ -33,7 +33,7 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       if @image.save
-        format.html { redirect_to @image, notice: '创建成功。' }
+        format.html { redirect_to @image, notice: '创建成功。'.freeze }
         format.json { render :show, status: :created, location: @image }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class ImagesController < ApplicationController
   def update
     respond_to do |format|
       if @image.update(image_params)
-        format.html { redirect_to @image, notice: '更新成功。' }
+        format.html { redirect_to @image, notice: '更新成功。'.freeze }
         format.json { render :show, status: :ok, location: @image }
       else
         format.html { render :edit }
@@ -62,24 +62,21 @@ class ImagesController < ApplicationController
     @image.destroy
 
     respond_to do |format|
-      format.html { redirect_to images_url, notice: '删除成功。' }
+      format.html { redirect_to images_url, notice: '删除成功。'.freeze }
       format.json { head :no_content }
     end
   end
 
   private
-    def check_user
-      redirect_back(fallback_location: root_path, alert: '很抱歉，您无权访问此页面。') if current_user.id != @image.user_id
-    end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_image
-      @image = Image.find_by_id(params[:id])
-      redirect_back(fallback_location: root_path, alert: '很抱歉，您无权访问此页面。') if @image.nil?
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_image
+    @image = Image.find_by_id(params[:id])
+    redirect_back(fallback_location: root_path, alert: '您无权访问此页面。'.freeze) if @image.nil?
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def image_params
-      params.require(:image).permit(:title, :image_type, :file)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def image_params
+    params.require(:image).permit(:title, :image_type, :file)
+  end
 end

@@ -5,4 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :images
+
+  # 是否是管理员
+  def admin?
+    "info@tuliang.org".freeze == email
+  end
 end

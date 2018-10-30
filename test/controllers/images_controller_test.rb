@@ -22,7 +22,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
   test "should show image" do
     get image_url(@image)
-    assert_redirected_to new_user_session_path
+    assert_response :success
   end
 
   test "should get edit" do

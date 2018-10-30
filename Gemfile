@@ -46,10 +46,14 @@ gem "carrierwave-aliyun"
 
 # 用户组件
 gem 'devise'
+# 用户权限
+gem 'cancancan', '~> 2.0'
 
+# 国际化
 gem "rails-i18n"
 gem 'enum_help'
 
+# 环境变量
 gem 'dotenv-rails'
 
 group :development, :test do
