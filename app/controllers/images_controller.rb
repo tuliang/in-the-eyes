@@ -72,7 +72,7 @@ class ImagesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_image
     @image = Image.find_by_id(params[:id])
-    redirect_back(fallback_location: root_path, alert: '您无权访问此页面。'.freeze) if @image.nil?
+    redirect_back(fallback_location: root_path, alert: '此页面不存在。'.freeze) if @image.nil?
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
