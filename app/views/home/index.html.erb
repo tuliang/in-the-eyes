@@ -1,3 +1,3 @@
 <div class="row">
-  <%= render partial: 'image', collection: @images, cached: true %>
+  <%= render partial: 'image', collection: @images, cached: true, expires_in: 3600 %>
 </div>
