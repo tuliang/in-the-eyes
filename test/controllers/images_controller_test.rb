@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ImagesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @image = images(:one)
+    @image = images(:demo)
   end
 
   test "should get index" do

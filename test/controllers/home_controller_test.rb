@@ -2,7 +2,7 @@ require 'test_helper'
 
 class HomeControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @image = images(:one)
+    @image = images(:demo)
   end
 
   test "should get root" do
