@@ -11,4 +11,9 @@ class Image < ApplicationRecord
   scope :latest, -> { order(updated_at: :desc) }
 
   enum image_types: { eye: 0, picture: 1, photo: 2, emoticon: 3 }
+
+  validates :title, presence: true, length: { maximum: 20 }
+  validates :image_type, presence: true, inclusion: { in: %i(0 1 2 3)}
+  validates :user_id, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
+  validates :file, presence: true
 end

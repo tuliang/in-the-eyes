@@ -2,6 +2,38 @@ require 'test_helper'
 
 class ImageTest < ActiveSupport::TestCase
 
+  test "image validates" do
+    image = Image.new
+
+    assert image.invalid?
+    assert image.errors[:title].any?
+    assert image.errors[:image_type].any?
+    assert image.errors[:user_id].any?
+    assert image.errors[:file].any?
+  end
+
+  test "image validates title" do
+    title = "s" * 21
+    image = Image.new(title: title)
+
+    assert image.invalid?
+    assert image.errors[:title].any?
+  end
+
+  test "image validates image_type" do
+    image = Image.new(image_type: -1)
+
+    assert image.invalid?
+    assert image.errors[:image_type].any?
+  end
+
+  test "image validates user_id" do
+    image = Image.new(user_id: -1)
+
+    assert image.invalid?
+    assert image.errors[:user_id].any?
+  end
+
   test "eyes" do
   	images(:eye)
 
