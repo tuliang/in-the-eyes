@@ -9,7 +9,6 @@ class ImageTest < ActiveSupport::TestCase
     assert image.errors[:title].any?
     assert image.errors[:image_type].any?
     assert image.errors[:user_id].any?
-    assert image.errors[:file].any?
   end
 
   test "image validates title" do

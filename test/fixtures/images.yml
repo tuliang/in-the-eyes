@@ -3,24 +3,23 @@
 demo:
   title: MyString
   image_type: 1
-  user_id: 1
+
+other:
+  title: MyString
+  image_type: 1
 
 eye:
   title: MyString
   image_type: 0
-  user_id: 1
 
 picture:
   title: MyString
   image_type: 1
-  user_id: 1
 
 photo:
   title: MyString
   image_type: 2
-  user_id: 1
 
 emoticon:
   title: MyString
   image_type: 3
-  user_id: 1
