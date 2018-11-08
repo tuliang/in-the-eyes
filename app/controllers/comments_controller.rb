@@ -1,9 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
-  load_and_authorize_resource
-
-
   # POST /comments
   # POST /comments.json
   def create

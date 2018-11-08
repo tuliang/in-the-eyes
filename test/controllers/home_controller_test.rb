@@ -6,22 +6,22 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get root" do
-    get root_url
+    get root_path
     assert_response :success
   end
 
   test "should get pictures" do
-    get pictures_url
+    get pictures_path
     assert_response :success
   end
 
   test "should get photos" do
-    get photos_url
+    get photos_path
     assert_response :success
   end
 
   test "should get emoticons" do
-    get emoticons_url
+    get emoticons_path
     assert_response :success
   end
 end
