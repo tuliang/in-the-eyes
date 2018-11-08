@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
   # GET /
   def index
-  	@images = Image.eyes.latest
+  	@images = Image.latest
   end
 
   # GET /pictures

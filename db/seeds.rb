@@ -5,14 +5,3 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-user_id = 1
-
-Image.delete_all
-
-100.times do |i|
-  Image.create({ title: "Test Title #{i}", image_type: 0, user_id: user_id })
-  Image.create({ title: "Test Title #{i}", image_type: 1, user_id: user_id })
-  Image.create({ title: "Test Title #{i}", image_type: 2, user_id: user_id })
-  Image.create({ title: "Test Title #{i}", image_type: 3, user_id: user_id })
-end
-
