@@ -27,16 +27,16 @@
 
   <div class="form-label-group">
     <%= form.label :file, "图片" %>
-    <% if image.file_url.present? %>
-      <%= form.file_field :file, placeholder: "图片", class: "form-control" %>
+    <% if image.file.attached? %>
+      <%= form.file_field :file, direct_upload: true, placeholder: "图片", class: "form-control" %>
     <% else %>
-      <%= form.file_field :file, required: true, placeholder: "图片", class: "form-control" %>
+      <%= form.file_field :file, required: true, direct_upload: true, placeholder: "图片", class: "form-control" %>
     <% end %>
   </div>
 
-  <% if image.file_url.present? %>
+  <% if image.file.attached? %>
     <div class="form-label-group">
-      <%= image_tag image.file_url, class: "form-control" %>
+      <%= image_tag image.file.service_url, class: "form-control" %>
     </div>
   <% end %>
 

@@ -3,8 +3,26 @@ test:
   root: <%= Rails.root.join("tmp/storage") %>
 
 local:
-  service: Disk
-  root: <%= Rails.root.join("storage") %>
+  service: Aliyun
+  access_key_id: <%= ENV['upload_access_id'] %>
+  access_key_secret: <%= ENV['aliyun_access_key'] %>
+  bucket: "in-the-eyes"
+  endpoint: "https://oss-cn-beijing.aliyuncs.com"
+  # path prefix, default: /
+  path: "local"
+  # Bucket mode: [public, private], default: public
+  mode: "private"
+
+production:
+  service: Aliyun
+  access_key_id: <%= ENV['upload_access_id'] %>
+  access_key_secret: <%= ENV['aliyun_access_key'] %>
+  bucket: "in-the-eyes"
+  endpoint: "https://oss-cn-beijing.aliyuncs.com"
+  # path prefix, default: /
+  path: "production"
+  # Bucket mode: [public, private], default: public
+  mode: "private"
 
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:

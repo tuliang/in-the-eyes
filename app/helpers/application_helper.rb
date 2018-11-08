@@ -1,9 +1,11 @@
 module ApplicationHelper
-  def file_url_helper(image)
-    if image.file_url.present?
-      image.file_url
+  def file_url_helper(image, thumb = false)
+    "image-#{Image.image_types.key(image.image_type)}.jpg" unless image.file.attached?
+
+    if thumb
+      image.image_thumb_url("image/resize,h_600")
     else
-      "image-#{Image.image_types.key(image.image_type)}.jpg"
+      image.file.service_url
     end
   end
 

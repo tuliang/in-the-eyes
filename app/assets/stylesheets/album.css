@@ -37,3 +37,10 @@ footer p {
 }
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+.card-img-top {
+  border-bottom:1px solid rgba(0, 0, 0, 0.125);
+  height:300px;
+  background-size:cover;
+  background-position:center center;
+}

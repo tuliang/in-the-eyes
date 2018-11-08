@@ -1,5 +1,5 @@
 class Image < ApplicationRecord
-  mount_uploader :file, ImageUploader
+  has_one_attached :file
 
   belongs_to :user
   has_many :comments
@@ -16,4 +16,8 @@ class Image < ApplicationRecord
   validates :title, presence: true, length: { maximum: 20 }
   validates :image_type, presence: true, inclusion: { in: [0, 1, 2, 3]}
   validates :user_id, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
+
+  def image_thumb_url(process)
+    self.file.service_url(params: { "x-oss-process" => process })
+  end
 end

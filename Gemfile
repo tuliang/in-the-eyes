@@ -41,9 +41,7 @@ gem 'jquery-rails'
 gem "bootstrap", "~> 4.1.3"
 
 # 上传组件
-gem "carrierwave"
-gem "carrierwave-aliyun"
-
+gem 'activestorage-aliyun'
 # 用户组件
 gem 'devise'
 # 用户权限
