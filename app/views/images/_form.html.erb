@@ -22,16 +22,19 @@
 
   <div class="form-label-group">
     <%= form.label :image_type, "类型" %>
-    <%= form.enum_select :image_type, {}, { required: true, placeholder: "类型", class: "form-control" } %>
+    <%= form.enum_select :image_type, {}, { required: true, placeholder: "类型", class: "custom-select" } %>
   </div>
 
   <div class="form-label-group">
-    <%= form.label :file, "图片" %>
-    <% if image.file.attached? %>
-      <%= form.file_field :file, direct_upload: true, placeholder: "图片", class: "form-control" %>
-    <% else %>
-      <%= form.file_field :file, required: true, direct_upload: true, placeholder: "图片", class: "form-control" %>
-    <% end %>
+    <div class="custom-file">
+      <%= form.label :file, "选择图片", class: "custom-file-label" %>
+      
+      <% if image.file.attached? %>
+        <%= form.file_field :file, direct_upload: true, class: "custom-file-input" %>
+      <% else %>
+        <%= form.file_field :file, required: true, direct_upload: true, class: "custom-file-input" %>
+      <% end %>
+    </div>
   </div>
 
   <% if image.file.attached? %>
@@ -40,5 +43,5 @@
     </div>
   <% end %>
 
-  <%= form.submit "提交", class: "btn btn-lg btn-primary btn-block" %>
+  <%= form.submit "提交", class: "btn btn-primary btn-block" %>
 <% end %>

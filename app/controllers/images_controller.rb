@@ -36,7 +36,7 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       if @image.save
-        format.html { redirect_to @image, notice: '创建成功。'.freeze }
+        format.html { redirect_to @image, notice: '创建成功'.freeze }
         format.json { render :show, status: :created, location: @image }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class ImagesController < ApplicationController
   def update
     respond_to do |format|
       if @image.update(image_params)
-        format.html { redirect_to @image, notice: '更新成功。'.freeze }
+        format.html { redirect_to @image, notice: '更新成功'.freeze }
         format.json { render :show, status: :ok, location: @image }
       else
         format.html { render :edit }
@@ -65,7 +65,7 @@ class ImagesController < ApplicationController
     @image.destroy
 
     respond_to do |format|
-      format.html { redirect_to images_url, notice: '删除成功。'.freeze }
+      format.html { redirect_to images_url, notice: '删除成功'.freeze }
       format.json { head :no_content }
     end
   end
@@ -75,7 +75,7 @@ class ImagesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_image
     @image = Image.find_by_id(params[:id])
-    redirect_back(fallback_location: root_path, alert: '此页面不存在。'.freeze) if @image.nil?
+    redirect_back(fallback_location: root_path, alert: '此页面不存在'.freeze) if @image.nil?
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

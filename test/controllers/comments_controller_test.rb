@@ -22,5 +22,10 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
     post comments_path, params: { comment: { content: @comment.content, image_id: @image.id } }
     assert_redirected_to image_path(@image.id)
+
+    # use member comment null
+    sign_in @user
+    post comments_path, params: { comment: { content: '', image_id: @image.id } }
+    assert_redirected_to image_path(@image.id)
   end
 end

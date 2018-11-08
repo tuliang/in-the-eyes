@@ -7,7 +7,7 @@
             <%= comment.user.email %>
           </p>
           <div class="d-flex justify-content-between align-items-center">
-            <small class="text-muted"></small>
+            <small class="text-muted"><%= time_ago_in_words comment.updated_at %>前更新</small>
           </div>
           <div class="card-img py-3">
             <%= comment.content %>

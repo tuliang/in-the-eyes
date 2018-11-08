@@ -5,7 +5,7 @@
         <div class="card-body">
           <p class="card-title"><%= @image.title %></p>
           <div class="d-flex justify-content-between align-items-center">
-            <small class="text-muted"><%= time_ago_in_words @image.created_at %>前更新</small>
+            <small class="text-muted"><%= time_ago_in_words @image.updated_at %>前更新</small>
             <% if user_signed_in? && current_user.id == @image.user_id %>
               <div class="btn-group">
                 <%= link_to '修改', edit_image_path(@image), class: "btn btn-sm btn-outline-secondary" %>
@@ -26,15 +26,10 @@
     <div class="col-md-12">
       <div class="card mb-12 box-shadow">
         <div class="card-body">
-          <p class="card-title">
-            <% if user_signed_in? %>
-              <%= current_user.email %>
-            <% end %>
-          </p>
-          <div class="d-flex justify-content-between align-items-center">
-            <small class="text-muted"></small>
-          </div>
           <div class="card-img py-3">
+            <% if user_signed_in? %>
+             <p><%= current_user.email %></p>
+            <% end %>
             <%= render 'comments/form', comment: @comment, image: @image %>
           </div>
         </div>
