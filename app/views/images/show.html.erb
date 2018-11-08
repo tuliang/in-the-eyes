@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row py-1">
 
     <div class="col-md-12">
       <div class="card mb-12 box-shadow">
@@ -19,3 +19,28 @@
     </div>
 
 </div>
+
+
+<div class="row py-1">
+
+    <div class="col-md-12">
+      <div class="card mb-12 box-shadow">
+        <div class="card-body">
+          <p class="card-title">
+            <% if user_signed_in? %>
+              <%= current_user.email %>
+            <% end %>
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted"></small>
+          </div>
+          <div class="card-img py-3">
+            <%= render 'comments/form', comment: @comment, image: @image %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+<%= render partial: 'images/comment'.freeze, collection: @comments %>

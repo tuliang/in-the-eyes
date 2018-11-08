@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :images
+  has_many :comments
 
   # 是否是管理员
   def admin?

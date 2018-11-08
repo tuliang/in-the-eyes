@@ -1,7 +1,14 @@
-# frozen_string_literal: true
-
-class DeviseCreateUsers < ActiveRecord::Migration[5.2]
+class FixDb < ActiveRecord::Migration[5.2]
   def change
+    create_table :images do |t|
+      t.string :title
+      t.string :file
+      t.integer :image_type
+      t.integer :user_id
+
+      t.timestamps
+    end
+
     create_table :users do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
@@ -40,5 +47,13 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
     add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
+
+    create_table :comments do |t|
+      t.text :content
+      t.integer :user_id
+      t.integer :image_id
+
+      t.timestamps
+    end
   end
 end

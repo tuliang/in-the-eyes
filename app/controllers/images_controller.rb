@@ -1,6 +1,7 @@
 class ImagesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   before_action :set_image, only: [:show, :edit, :update, :destroy]
+
   load_and_authorize_resource
 
   # GET /images
@@ -14,6 +15,8 @@ class ImagesController < ApplicationController
   # GET /images/1
   # GET /images/1.json
   def show
+    @comment = Comment.new
+    @comments = @image.comments.latest
   end
 
   # GET /images/new
