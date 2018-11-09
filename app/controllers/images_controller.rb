@@ -4,6 +4,8 @@ class ImagesController < ApplicationController
 
   load_and_authorize_resource
 
+  layout "image", only: [:show]
+
   # GET /images
   # GET /images.json
   def index
