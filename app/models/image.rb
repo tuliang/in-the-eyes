@@ -20,4 +20,8 @@ class Image < ApplicationRecord
   def image_thumb_url(process)
     self.file.service_url(params: { "x-oss-process" => process })
   end
+
+  def room
+    "image_#{id}"
+  end
 end

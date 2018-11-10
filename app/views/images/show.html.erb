@@ -37,6 +37,6 @@
     </div>
 </div>
 
-<div id="comments">
+<div id="comments" data-room="<%= @image.room %>">
   <%= render partial: 'images/comment'.freeze, collection: @comments %>
 </div>
