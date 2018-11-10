@@ -2,5 +2,5 @@ $("#flash").html("<%=j render 'layouts/flash' %>");
 <% if @comment.persisted? %>
   $("#comment_content").val("");
   $("#comments").prepend("<%=j render 'images/comment', comment: @comment %>");  
-  $("#comments .row:first .card").css({ 'background-color': '#fff3cd' }).animate({ 'background-color': '#fff' }, 2000);
+  $("#comments .row:first .card").hide().fadeIn(1000);
 <% end %>
