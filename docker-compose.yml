@@ -2,6 +2,7 @@ version: '3'
 volumes:  
   postgres_data: {} 
   public: 
+  redis_data:
 services:  
   app:    
     container_name: 'in_the_eyes_app'
@@ -10,6 +11,7 @@ services:
     image: in_the_eyes_app_image:latest
     links:      
       - db  
+      - redis_db  
   db:    
     container_name: 'in_the_eyes_db'
     image: postgres    
@@ -26,3 +28,8 @@ services:
       - app    
     ports:      
       - 80:80
+  redis_db:
+    image: 'redis:4.0-alpine'
+    command: redis-server #--requirepass yourpassword
+    volumes:
+      - 'redis_data:/data'
