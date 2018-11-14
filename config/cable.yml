@@ -1,11 +1,13 @@
+default: &default  
+  adapter: redis
+  timeout: 1
+
 development:
-  adapter: async
+  <<: *default
 
 test:
-  adapter: async
+  <<: *default
 
 production:
-  # adapter: async
-  adapter: redis
+  <<: *default
   url: "redis://redis_db:6379"
-  timeout: 1
