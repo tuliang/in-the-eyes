@@ -1,16 +1,20 @@
-## 眼中
+[![Build Status](https://travis-ci.org/tuliang/in-the-eyes.svg?branch=master)](https://travis-ci.org/tuliang/in-the-eyes)
+
+# 眼中
 
 项目中使用：
+
 - `Ruby 2.5.3`
 - `Rails 5.2.1`
 - `Capistrano`
 - `Docker & Docker Compose`
 - `PostgreSQL`
 - `Nginx`
+- `Redis`
 
 服务器支持阿里云 `Ubuntu 16.04` `64` 位，本地支持  `MAC`，其他环境未经过测试。
 
-### 准备工作
+## 准备工作
 #### 登陆服务器
 ```bash
 # ssh 用户@IP
