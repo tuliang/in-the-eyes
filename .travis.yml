@@ -18,9 +18,10 @@ matrix:
 before_install:
   - sed -i "s/gems.ruby-china.org/rubygems.org/g" Gemfile.lock
   - psql -c "CREATE USER \"admin\" WITH CREATEDB PASSWORD 'admin';" -U postgres
-  - psql -c "create database \"homeland-test\" WITH OWNER=\"admin\";" -U postgres
+  # - psql -c "create database \"in_the_eyes_test\" WITH OWNER=\"admin\";" -U postgres
 
 before_script:
+  - RAILS_ENV=test bundle exec rake db:create
   - RAILS_ENV=test bundle exec rake db:migrate
 
 script:

@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/tuliang/in-the-eyes.svg?branch=master)](https://travis-ci.org/tuliang/in-the-eyes)
 
+[![codecov](https://codecov.io/gh/tuliang/in-the-eyes/branch/master/graph/badge.svg)](https://codecov.io/gh/tuliang/in-the-eyes)
+
 # 眼中
 
 项目中使用：
