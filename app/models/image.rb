@@ -26,7 +26,7 @@ class Image < ApplicationRecord
   end
 
   def up_hits
-    $redis.hincrby(key, "hits", 1).to_i
+    $redis.hincrby(key, "hits", 1)
   end
 
   def hits
