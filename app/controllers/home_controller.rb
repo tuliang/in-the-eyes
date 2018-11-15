@@ -7,22 +7,22 @@ class HomeController < ApplicationController
 
   # GET /pictures
   def pictures
-  	@images = Image.pictures.latest
+    @images = Image.pictures.latest
 
-  	render :index
+    render :index
   end
 
   # GET /photos
   def photos
-  	@images = Image.photos.latest
+    @images = Image.photos.latest
 
-  	render :index
+    render :index
   end
 
   # GET /emoticons
   def emoticons
-  	@images = Image.emoticons.latest
+    @images = Image.emoticons.latest
 
-  	render :index
+    render :index
   end
 end

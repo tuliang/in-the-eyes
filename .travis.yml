@@ -16,7 +16,7 @@ matrix:
     - rvm: ruby-head
 
 before_install:
-  - sed -i "s/gems.ruby-china.org/rubygems.org/g" Gemfile.lock
+  - sed -i "s/gems.ruby-china.com/rubygems.org/g" Gemfile.lock
   - psql -c "CREATE USER \"admin\" WITH CREATEDB PASSWORD 'admin';" -U postgres
 
 before_script:
