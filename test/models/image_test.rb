@@ -2,6 +2,11 @@ require 'test_helper'
 
 class ImageTest < ActiveSupport::TestCase
 
+  setup do
+    @user = User.create!(email: "#{rand(50000)}@example.com", password: "password")
+    @image = Image.create!(title: "#{rand(50000)}-tiele", image_type: Image.image_types[:eye], user_id: @user.id)
+  end
+
   test "image validates" do
     image = Image.new
 
@@ -63,5 +68,37 @@ class ImageTest < ActiveSupport::TestCase
   	Image.emoticons.each do |image|
       assert_equal(image.image_type, Image.image_types[:emoticon])
   	end
+  end
+
+  test "room" do
+    image = images(:demo)
+    image.save
+
+    assert_equal(image.room, "#{image.class.name.downcase}_#{image.id}")
+  end
+
+  test "up_hits" do
+    @image.up_hits
+
+    assert_equal(@image.hits, 1)
+
+    hits = rand(10)
+
+    hits.times do
+      @image.up_hits
+    end
+    
+    assert_equal(@image.hits, 1+hits)
+  end
+
+  test "hits" do
+    assert_equal(@image.hits, 0)
+  end
+
+  test "key" do
+    image = images(:demo)
+    image.save
+
+    assert_equal(image.key, "#{image.class.name.downcase}_#{image.id}")
   end
 end

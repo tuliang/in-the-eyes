@@ -19,6 +19,8 @@ class ImagesController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @image.comments.latest
+
+    @image.up_hits
   end
 
   # GET /images/new

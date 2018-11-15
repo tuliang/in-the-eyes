@@ -22,6 +22,18 @@ class Image < ApplicationRecord
   end
 
   def room
-    "image_#{id}"
+    key
+  end
+
+  def up_hits
+    $redis.hincrby(key, "hits", 1).to_i
+  end
+
+  def hits
+    $redis.hget(key, "hits").to_i
+  end
+
+  def key
+    "#{self.class.name.downcase}_#{id}"
   end
 end
