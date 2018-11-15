@@ -16,7 +16,7 @@ matrix:
     - rvm: ruby-head
 
 before_install:
-  - sed -i "s/gems.ruby-china.com/rubygems.org/g" Gemfile.lock
+  - sed -i "s/gems.ruby-china.com/rubygems.org/g" Gemfile
 
 before_script:
   - RAILS_ENV=test bundle exec rake db:create
