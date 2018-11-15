@@ -64,6 +64,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
   gem 'rubocop', '~> 0.60.0', require: false
+
+  gem "codecov", require: false
 end
 
 group :development do
