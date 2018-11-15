@@ -3,6 +3,12 @@ require_relative '../config/environment'
 require 'rails/test_help'
 require 'database_cleaner'
 
+require 'simplecov'
+SimpleCov.start
+
+require 'codecov'
+SimpleCov.formatter = SimpleCov::Formatter::Codecov
+
 # 清理数据库和 redis
 DatabaseCleaner[:active_record].strategy = :transaction
 DatabaseCleaner[:redis].strategy = :truncation
