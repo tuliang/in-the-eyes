@@ -6,8 +6,10 @@ require 'database_cleaner'
 require 'simplecov'
 SimpleCov.start
 
-require 'codecov'
-SimpleCov.formatter = SimpleCov::Formatter::Codecov
+if ENV['CI'] == 'true'
+  require 'codecov'
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+end
 
 # 清理数据库和 redis
 DatabaseCleaner[:active_record].strategy = :transaction
