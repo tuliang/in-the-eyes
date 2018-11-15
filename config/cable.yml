@@ -10,4 +10,4 @@ test:
 
 production:
   <<: *default
-  url: "redis://redis_db:6379"
+  url: <%= ENV["redis_url"] %>
